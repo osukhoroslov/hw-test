@@ -1,4 +1,4 @@
-name: Homework 1 Test
+name: HW 1
 
 on:
   push:
@@ -14,23 +14,11 @@ jobs:
     name: Test
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout repository
-        uses: actions/checkout@v3
-
-      - name: Install Rust toolchain
-        uses: actions-rs/toolchain@v1
+      - uses: actions/checkout@v3
+      - uses: dtolnay/rust-toolchain@stable
+      - uses: Swatinem/rust-cache@v2
         with:
-          toolchain: stable
-          profile: minimal
-          override: true
-
-      - name: Cache cargo artifacts
-        uses: Swatinem/rust-cache@v2
-
-      - name: Build
-        working-directory: homework/01-guarantees/test
-        run: cargo build --release
-
+           workspaces: "homework/01-guarantees/test -> target"
       - name: Run tests
         working-directory: homework/01-guarantees/test
         run: cargo run --release -- -m 100 -o
