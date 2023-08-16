@@ -23,4 +23,4 @@ jobs:
            cache-on-failure: true
       - name: Run tests
         working-directory: homework/01-guarantees/test
-        run: cargo run -- -m 100 -o
+        run: cargo run --release -- -m 100 -o
