@@ -18,7 +18,8 @@ jobs:
       - uses: dtolnay/rust-toolchain@stable
       - uses: Swatinem/rust-cache@v2
         with:
-           workspaces: "homework/01-guarantees/test -> target"
+           workspaces: homework/01-guarantees/test
+           cache-on-failure: true
       - name: Run tests
         working-directory: homework/01-guarantees/test
         run: cargo run --release -- -m 100 -o
